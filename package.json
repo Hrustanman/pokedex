@@ -1,7 +1,10 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "homepage": "https://Hrustanman.github.io/pokedex",
   "scripts": {
     "start": "expo start",
+    "deploy": "gh-pages -d web-build",
+    "predeploy": "expo build:web",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -14,10 +17,12 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
     "react-native-media-queries": "^0.3.0",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.0",
+    "gh-pages": "^3.1.0"
   },
   "private": true
 }

@@ -68,7 +68,7 @@ class App extends Component {
 const styles = StyleSheet.create(
     {
         body: {
-            backgroundColor: 'red'
+            backgroundColor: '#333'
         },
         cardHolder: {
             flex: 1,
