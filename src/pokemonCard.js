@@ -74,6 +74,9 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 30
     },
+    pokemontypelook: {
+            
+    },
     typepsychic: {
         backgroundColor: '#F95587',
         width: 50,
