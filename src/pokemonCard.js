@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, Button, Image } from 'react-native'
-import { createStyles, maxHeight } from 'react-native-media-queries';
+import { View, Text, StyleSheet,  Image, } from 'react-native'
+import { createStyles, } from 'react-native-media-queries';
 
+//export class PokemonType extends Component {
+//    handleClick = () => {
+//        alert(this.props.name);
+//        console.log(this.props.name)
+//    }
+
+//    render() {
+//        return (    
+//   <Button title="Example" onPress={this.handleClick} />
+// );
+//    }
+//}
 
 export const PokemonCard = (props) => {
- 
-    //function retrunClass(pokeType) {
-    //    if (pokeType == 'psychic')
-    //        return styles.typepsychic
-    //    else
-    //        return styles.defaultType
-    //}
     function retrunClass(pokeType) {
         switch (pokeType) {
             case 'psychic': return styles.typepsychic;
@@ -32,6 +37,7 @@ export const PokemonCard = (props) => {
         }
     }
 
+
     return (
         <View style={styles.cardstyle}>
             <View>
@@ -40,22 +46,18 @@ export const PokemonCard = (props) => {
             </View>
             <Text style={styles.pokemonName}>{props.name}</Text>
             {props.types && props.types.map((type, i) => (
-                <>
-                    < Text key={i}>{type.name}</Text>
-                    <View style={[retrunClass(type.name)]}></View>
-                    </>
+                <View style={{ marginTop: 10 }} key={i}>
+
+                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                        <View style={[retrunClass(type.name), styles.pokemontypelook]}>< Text style={styles.pokeTypeText} key={i}>{type.name}</Text></View>
+                        </View>
+                </View>
             ))}
-
-
         </View>
 
     )
 }
-maxHeight(200, {
-    cardstyle: {
-        height: 500
-    }
-})
+
 const styles = StyleSheet.create({
     cardstyleImage: {
         height: 150,
@@ -64,84 +66,67 @@ const styles = StyleSheet.create({
     ,
     cardstyle: {
         margin: 10,
-        height: 300,
-        width: 300,
-        backgroundColor: 'orange',
+        height: 270,
+        width: 270,
+        backgroundColor: '#3c4d41',
         alignItems: 'center',
         justifyContent: 'center',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#6d8a76',
+        textTransform: 'capitalize'
     },
     pokemonName: {
         color: 'white',
-        fontSize: 30
+        fontSize: 30,
+
     },
     pokemontypelook: {
-            
+        width: 60,
+        height: 20,
+        borderRadius: 2,
     },
     typepsychic: {
         backgroundColor: '#F95587',
-        width: 50,
-        height: 20,
     },
     typebug: {
         backgroundColor: '#A6B91A',
-        width: 50,
-        height: 20,
     },
     typenormal: {
         backgroundColor: '#A8A77A',
-        width: 50,
-        height: 20,
     }, typesteel: {
         backgroundColor: '#B7B7CE',
-        width: 50,
-        height: 20,
-    }, typeground : {
+    }, typeground: {
         backgroundColor: '#E2BF65',
-        width: 50,
-        height: 20,
     }, typeflying: {
         backgroundColor: '#A98FF3',
-        width: 50,
-        height: 20,
     }, typefairy: {
         backgroundColor: '#D685AD',
-        width: 50,
-        height: 20,
     }, typewater: {
         backgroundColor: '#6390F0',
-        width: 50,
-        height: 20,
-    }, typepoison : {
+    }, typepoison: {
         backgroundColor: '#A33EA1',
-        width: 50,
-        height: 20,
     }, typerock: {
         backgroundColor: '#B6A136',
-        width: 50,
-        height: 20,
     }, typefighting: {
         backgroundColor: '#C22E28',
-        width: 50,
-        height: 20,
     }, typedark: {
         backgroundColor: '#705746',
-        width: 50,
-        height: 20,
-    }, typeice : {
+    }, typeice: {
         backgroundColor: '#96D9D6',
-        width: 50,
-        height: 20,
-    }, typefire : {
+    }, typefire: {
         backgroundColor: '#EE8130',
-        width: 50,
-        height: 20,
     }, typelctric: {
         backgroundColor: '#F7D02C',
-      
+
     }, typegrass: {
         backgroundColor: '#7AC74C',
         width: 50,
         height: 20,
+    },
+    pokeTypeText: {
+        textAlign: "center",
     }
+
 });
 
