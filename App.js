@@ -88,13 +88,18 @@ class App extends Component {
             <Router>
                 <View style={styles.body} >
                     <View style={styles.header}>
-                        <Link to='/'><Text style={styles.text}>Pokedox</Text></Link>
+                        <Link to='/'><Text style={styles.text}>Pokedex</Text></Link>
                         <TextInput style={styles.input}
                             onChangeText={this.filter}
                         />
                     </View>
                     <View style={styles.mainWindow}>
-                    <Route exact path="/">
+                        <Route exact path="/pokedex">
+                    <View style={styles.cardHolder}>
+                       {pokemonData}
+                        </View>
+                    </Route>
+                        <Route exact path="/">
                     <View style={styles.cardHolder}>
                        {pokemonData}
                         </View>
