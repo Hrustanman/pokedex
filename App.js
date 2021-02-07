@@ -31,6 +31,9 @@ class App extends Component {
         });
         this.setState({ data: newPokemon });
     }
+    returnBasicData = () => {
+        this.setState({ data: this.state.fetchedData })
+    }
     componentDidMount = async () => {
         const responce = await fetch(url)
         let data = await responce.json()
@@ -38,7 +41,6 @@ class App extends Component {
         if (data.results.length > 0) {
             for (var i = 0; i < data.results.length; i++) {
                 let url2 = "https://pokeapi.co/api/v2/pokemon/" + data.results[i].name;
-
 
                 let pokemonData = await fetch(url2);
                 let pokemonDataJson = await pokemonData.json()
@@ -80,15 +82,12 @@ class App extends Component {
                 pressType={this.pressType}
             />)
         })
-        let pokemonDescription = this.state.data.map((data, i) => {
-            return (<PokemonDescription key={i} {...data}
-            />)
-        })
+
         return (
             <Router>
                 <View style={styles.body} >
                     <View style={styles.header}>
-                        <Link to='/'><Text style={styles.text}>Pokedex</Text></Link>
+                        <Link onClick={this.returnBasicData} style={{ textDecoration: 'none' }} to='/'><Text style={styles.text}>Pokedex</Text></Link>
                         <TextInput style={styles.input}
                             onChangeText={this.filter}
                         />
@@ -110,9 +109,9 @@ class App extends Component {
                                 let pokemon = this.state.data.find((el) => {
                                     return el.id === Number(id)
                                 });
-                              
                                 return (
-                                    <PokemonDescription {...pokemon} />
+                                    <PokemonDescription
+                                        {...pokemon} />
                                 )
                             }} />
                 </View>
@@ -161,7 +160,7 @@ const styles = StyleSheet.create(
             width: 300,
             height: 30,
             borderRadius: 5
-        },
+        }
     }
 )
 export default App;

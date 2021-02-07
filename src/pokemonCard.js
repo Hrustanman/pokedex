@@ -1,19 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Image, } from 'react-native'
-import { createStyles } from 'react-native-media-queries';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-//export class PokemonType extends Component {
-//    handleClick = () => {
-//        alert(this.props.name);
-//        console.log(this.props.name)
-//    }
-
-//    render() {
-//        return (    
-//   <Button title="Example" onPress={this.handleClick} />
-// );
-//    }
-//}
 
 export const PokemonCard = (props) => {
     function retrunClass(pokeType) {
@@ -36,26 +23,26 @@ export const PokemonCard = (props) => {
             case 'grass': return styles.typegrass;
         }
     }
-   
+
 
     return (
         <View style={styles.cardstyle}>
-                <View>
-                    <Image style={styles.cardstyleImage}
-                        source={{ uri: props.image }} />
-                </View>
-            <Link to={'/pokemonDescription/' + props.id}>
+            <View>
+                <Image style={styles.cardstyleImage}
+                    source={{ uri: props.image }} />
+            </View>
+            <Link style={{ textDecoration: 'none' }} to={'/pokemonDescription/' + props.id}>
                 <Text style={styles.pokemonName}>{props.name}</Text>
             </Link>
-            {props.types && props.types.map((type, i) => (
-                    <View style={{ marginTop: 10 }} key={i}>
-                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                            <View style={[retrunClass(type.name), styles.pokemontypelook]}>< Text
-                                onPress={() => props.pressType(type.name)} 
-                        style={styles.pokeTypeText} key={i}>{type.name}</Text></View>
-                        </View>
+            <View style={styles.typeRow}  >
+                {props.types && props.types.map((type, i) => (
+                    <View  key={i}>
+                        <View style={[retrunClass(type.name), styles.pokemontypelook]}>< Text
+                            onPress={() => props.pressType(type.name)}
+                            style={styles.pokeTypeText} key={i}>{type.name}</Text></View>
                     </View>
                 ))}
+            </View>
         </View>
 
     )
@@ -69,8 +56,8 @@ const styles = StyleSheet.create({
     ,
     cardstyle: {
         margin: 10,
-        height: 270,
-        width: 270,
+        height: 300,
+        width: 300,
         backgroundColor: '#3c4d41',
         alignItems: 'center',
         justifyContent: 'center',
@@ -88,6 +75,8 @@ const styles = StyleSheet.create({
         width: 60,
         height: 20,
         borderRadius: 2,
+        margin: 5
+
     },
     typepsychic: {
         backgroundColor: '#F95587',
@@ -127,7 +116,14 @@ const styles = StyleSheet.create({
     },
     pokeTypeText: {
         textAlign: "center",
-    }
+    },
+    linkUnderline: {
+        backgroundColor: 'red'
+    },
+    typeRow: {
+    display: 'flex',
+    flexDirection: 'row'
+}
 
 });
 

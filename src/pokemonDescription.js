@@ -32,18 +32,26 @@ export const PokemonDescription = (props) => {
                         source={{ uri: props.image }} />
                 </View>
                 <View style={styles.descriptionInnerText}>
+                    <View style={styles.typeRow}>
                     <Text style={styles.categoryText}>Weight:</Text>
-                    <Text style={styles.categoryTextValue}> {props.weight} </Text>
-                    <Text style={styles.categoryText}> Abilities: </Text>
-                    <Text style={styles.categoryTextValue}>{props.abilities}</Text>
+                        <Text style={styles.categoryTextValue}>{props.weight} </Text>
+                    </View>
+                    <View style={styles.typeRow}>
+                    <Text style={styles.categoryText}>Abilities:</Text>
+                        <Text style={styles.categoryTextValue}>{props.abilities}</Text>
+                    </View>
+                    <View style={styles.typeRow}>
                     <Text style={styles.categoryText}>Height:</Text>
-                    <Text style={styles.categoryTextValue}> {props.height}</Text>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text style={styles.categoryText}>Type </Text>
+                        <Text style={styles.categoryTextValue}>{props.height}</Text>
+                    </View>
+
+                    <View style={styles.typeRow}>
+                        <Text style={styles.categoryText}>Type:</Text>
                         {
                             props.types && props.types.map((type, i) => (
                                 <View style={styles.pokemonType} key={i}>
-                                    <View style={[retrunClass(type.name), styles.pokemontypelook]}>
+                                    <View
+                                        style={[retrunClass(type.name), styles.pokemontypelook]}>
                                         < Text style={styles.pokeTypeText}>                                      {type.name}
                                         </Text>
                                     </View>
@@ -84,27 +92,24 @@ const styles = StyleSheet.create({
     },
     descriptionInnerText: {
         width: '50%',
-        color: 'red'
+        color: 'red',
+        textTransform: 'capitalize',
     },
     categoryText: {
         color: 'white',
         fontSize: 20,
         fontWeight: '400',
+
     },
     categoryTextValue: {
         color: 'black',
         fontSize: 25,
-    },
-    pokemonType: {
-        flexDirection: 'row',
-
+        marginLeft: 15
     },
     pokemontypelook: {
         width: 100,
-        height: 30,
         borderRadius: 2,
         margin: 10,
-        justifyContent: 'center',
     },
     typepsychic: {
         backgroundColor: '#F95587',
@@ -143,5 +148,16 @@ const styles = StyleSheet.create({
     },
     pokeTypeText: {
         textAlign: "center",
-    }
+  
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 40,
+    },
+    typeRow: {
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'row',
+        margin: 20
+}
 })
