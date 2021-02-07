@@ -13,19 +13,15 @@ class App extends Component {
         data: [],
         fetchedData: [],
         tern: '',
-        selectedTags: []
     }
     pressType = (type) => {
         let newPokemonList = this.state.fetchedData.filter(
             function (pokemon) {
                 return pokemon.types.some(function (nestedType) {
                     return nestedType.name == type
-                })
-            } 
+                })   } 
         )
         this.setState({ data: newPokemonList })
-        console.log(newPokemonList)
-    alert(type)
 }
 
     filter = (tern) => {
