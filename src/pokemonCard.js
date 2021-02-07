@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet,  Image, } from 'react-native'
-import { createStyles, } from 'react-native-media-queries';
-
+import { View, Text, StyleSheet, Image, } from 'react-native'
+import { createStyles } from 'react-native-media-queries';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 //export class PokemonType extends Component {
 //    handleClick = () => {
 //        alert(this.props.name);
@@ -36,23 +36,26 @@ export const PokemonCard = (props) => {
             case 'grass': return styles.typegrass;
         }
     }
-
+   
 
     return (
         <View style={styles.cardstyle}>
-            <View>
-                <Image style={styles.cardstyleImage}
-                    source={{ uri: props.image }} />
-            </View>
-            <Text style={styles.pokemonName}>{props.name}</Text>
-            {props.types && props.types.map((type, i) => (
-                <View style={{ marginTop: 10 }} key={i}>
-
-                    <View style={{ flexDirection: 'row', marginTop: 5 }}>
-                        <View style={[retrunClass(type.name), styles.pokemontypelook]}>< Text style={styles.pokeTypeText} key={i}>{type.name}</Text></View>
-                        </View>
+                <View>
+                    <Image style={styles.cardstyleImage}
+                        source={{ uri: props.image }} />
                 </View>
-            ))}
+            <Link to={'/pokemonDescription/' + props.id}>
+                <Text style={styles.pokemonName}>{props.name}</Text>
+            </Link>
+            {props.types && props.types.map((type, i) => (
+                    <View style={{ marginTop: 10 }} key={i}>
+                        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+                            <View style={[retrunClass(type.name), styles.pokemontypelook]}>< Text
+                                onPress={() => props.pressType(type.name)} 
+                        style={styles.pokeTypeText} key={i}>{type.name}</Text></View>
+                        </View>
+                    </View>
+                ))}
         </View>
 
     )
@@ -121,8 +124,6 @@ const styles = StyleSheet.create({
 
     }, typegrass: {
         backgroundColor: '#7AC74C',
-        width: 50,
-        height: 20,
     },
     pokeTypeText: {
         textAlign: "center",
